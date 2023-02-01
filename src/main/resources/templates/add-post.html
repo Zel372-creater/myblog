@@ -22,8 +22,13 @@
 
       <div class="text-end">
         <nav>
-          <button type="button" class="btn btn-outline-light me-2">Войти</button>
-          <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+          <form th:action="@{/logout}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <button type="button" class="btn btn-outline-light me-2">Войти</button>
+          </form>
+          <form>
+            <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+          </form>
         </nav>
       </div>
     </div>
@@ -32,6 +37,7 @@
 <br><br><br><br>
 <div class="container">
   <form  action="/blog/add" method="post">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <input class="form-control" type="text" name="post" placeholder="Введите название статьи"><br><br>
     <input class="form-control" type="text" name="name" placeholder="Введите ваше имя"><br><br>
     <textarea class="form-control" name="text" placeholder="Введите текст статьи"></textarea><br><br>

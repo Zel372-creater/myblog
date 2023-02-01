@@ -22,8 +22,13 @@
 
       <div class="text-end">
         <nav>
-          <button type="button" class="btn btn-outline-light me-2">Войти</button>
-          <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+          <form th:action="@{/logout}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-outline-light me-2">Войти</button>
+          </form>
+          <form>
+            <button type="submit" class="btn btn-warning">Зарегистрироваться</button>
+          </form>
         </nav>
       </div>
     </div>
@@ -32,6 +37,7 @@
 <br><br><br><br>
 <div class="container" th:each="el : ${post}">
   <form  th:action="'/blog/' + ${el.id} + '/edit'" method="post">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <input class="form-control" type="text" name="postEdit" th:value="${el.post}"><br><br>
     <input class="form-control" type="text" name="nameEdit" th:value="${el.author}"><br><br>
     <textarea class="form-control" name="textEdit" th:value="${el.text}"></textarea><br><br>
